@@ -22,7 +22,8 @@
     <source src="/video/{{ moviesrc }}" type="video/mp4">
   </video>
 
-  <h2>{{ movietitle }}</h2>
+<h2 id="soloTitle"> </h2>
+  <h2>{{ data }}</h2>
 
   <!-- reviews go here -->
   <article class="comments" v-if="reviews.length > 0">
@@ -51,6 +52,8 @@
 <!-- Place this tag where you want the share button to render. -->
 <div class="g-plus" data-action="share"></div>
 
+<i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
+
 
     <!-- Your share button code -->
     <div class="fb-share-button"
@@ -60,3 +63,7 @@
 
   </aside>
 </section>
+
+
+
+		<script src="../controllers/like.js"></script>
