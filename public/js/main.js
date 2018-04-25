@@ -15,6 +15,7 @@ const myApp = {
     data : {
       message : "Welcome to my Netflix ripoff!",
 
+
       genres : [] // these get populated from the function at the top of the file
     },
 
