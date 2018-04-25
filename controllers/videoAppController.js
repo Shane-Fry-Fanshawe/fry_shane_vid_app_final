@@ -18,7 +18,7 @@ exports.get_all_movies = (req, res) => {
         return console.log(err.message);
       }
 
-      console.log(rows);
+      //console.log(rows);
 
       res.render('home', {
           defaultMovie : rows[Math.floor(Math.random() * rows.length)],
@@ -30,8 +30,14 @@ exports.get_all_movies = (req, res) => {
   })
 };
 
+
+
+
+
+
+
 exports.get_one_movie = (req, res) => {
-  console.log('hit get one route');
+  console.log('hit single movie');
 
   connect.getConnection((err, connection) => {
     if (err) {
@@ -39,31 +45,71 @@ exports.get_one_movie = (req, res) => {
     }
 
     let query = `SELECT * FROM tbl_comments WHERE comments_movie = "${req.params.id}"`;
-    let querytitle = `SELECT movies_title FROM tbl_movies WHERE movies_id = "${req.params.id}"`;
+    let querytitle = `SELECT * FROM tbl_movies WHERE movies_id = "${req.params.id}"`;
 
 
-    connect.query(query, (err, rows) => {
+//I changed query to querytitle for testing purposes to get the current info per movie!
+// Would change it back and have them both running to sperate objects to hold each data
+
+
+    connect.query(querytitle, (err, rows) => {
       connection.release(); // let somebody else use this connection
 
       if (err) {
         return console.log(err.message);
       }
+ 
+
+      console.log(req.params.movie);
+      console.log(querytitle);
 
 
-      console.log(req.params);
-      console.log(query);
+//Getting the info to display onto the single video page (Probs an easier way, but this is how I approached it)
+      let data = JSON.stringify(rows);
+
+      var obj = JSON.parse(data);
+      //console.log(data);
+      //console.log("--------------");
+      //console.log(obj);
+
+      var arrayLength = obj.length;
+      var i;
+
+  for ( i = 0; i < arrayLength; i++) {
+
+    let moviesCount = obj[i];
+      //console.log(moviesCount);
+      console.log(moviesCount.movies_title);
+      console.log(moviesCount.movies_storyline);
+
+    };
+
+
+
+
+
+      //rows.forEach(row => console.log(JSON.stringify(row.data)))
 
       res.render('moviepage', {
+
         movie : req.params.id,
         moviesrc : req.params.movie,
-        movietitle : querytitle,
-        data : JSON.stringify(rows),
+      //  movietitle: moviesCount.movies_title,
+        data : data,
         mainpage : false,
         videopage : true,
       });
+
+
+
     })
   })
 };
+
+
+
+
+
 
 exports.post_new_review = (req, res) => {
   console.log('hit post review route');
