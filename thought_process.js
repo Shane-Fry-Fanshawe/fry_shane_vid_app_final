@@ -4,6 +4,9 @@ This is my thought process for part marks, and reference for myself!
 
 
 Socail Media Sharing:
+*** for footer I thought we needed to use a v-bind: for an href but it just lets me normally add it in with the {{link here}}*** just incase you wanted that instead id let you know ***
+
+
 - I already know from exprince that I will need to go into the socail media platforms dev tools
 
 - Google Plus and Twitter is simple enough
@@ -20,6 +23,11 @@ I was also looking at your code here, and saw a possiblity of using a fucntion i
 Will have to test this*
 
 
+controllers > like.js
+
+I couldnt get it to work, needed to still add query for the databse and insert a number into that and depending on that number it would display like ro dislike
+
+
 
 
 
@@ -30,6 +38,14 @@ Movie Content:
 I got it to query, got it to JSON format, parsed that so I can use it.
 PROBLEM: After using the loop to be able to pull what I wanted from the array I couldnt use that outside the loop! All I would need to do is take that variable and output it to the res.render and update the handlebars page to the correct object!
 So if you look at the console it pulls the title, desc, etc for the movie I just couldnt get that outside the loop to use it to render so it basically all works but that :(
+
+
+myApp.vm.genres.push({
+  name : genre,
+  movies : data.filter(movie => movie.genre_name === genre)
+})
+
+^Maybe I had to push it out???? Couldnt get that to work either
 
 
 

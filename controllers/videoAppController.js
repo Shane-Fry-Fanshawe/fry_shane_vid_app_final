@@ -23,6 +23,10 @@ exports.get_all_movies = (req, res) => {
       res.render('home', {
           defaultMovie : rows[Math.floor(Math.random() * rows.length)],
           data : JSON.stringify(rows),
+          instagram : "https://www.instagram.com/escapade.apparel/",
+          facebook : "https://www.facebook.com/",
+          google : "https://www.youtube.com/channel/UCy3oPBCpp0b8_QFW3z8d-9w",
+          twitter : "https://twitter.com/?lang=en",
           mainpage : true,
           videopage : false
       });
@@ -58,7 +62,7 @@ exports.get_one_movie = (req, res) => {
       if (err) {
         return console.log(err.message);
       }
- 
+
 
       console.log(req.params.movie);
       console.log(querytitle);
@@ -96,6 +100,10 @@ exports.get_one_movie = (req, res) => {
         moviesrc : req.params.movie,
       //  movietitle: moviesCount.movies_title,
         data : data,
+        instagram : "https://www.instagram.com/escapade.apparel/",
+        facebook : "https://www.facebook.com/",
+        google : "https://www.youtube.com/channel/UCy3oPBCpp0b8_QFW3z8d-9w",
+        twitter : "https://twitter.com/?lang=en",
         mainpage : false,
         videopage : true,
       });
